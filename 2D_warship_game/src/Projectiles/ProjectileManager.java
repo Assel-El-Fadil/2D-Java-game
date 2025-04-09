@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class ProjectileManager{
-    Thread projectileThread;
     GamePanel gp;
     KeyHandler keyh;
     Player player;
@@ -21,12 +20,11 @@ public class ProjectileManager{
         this.player = player;
     }
 
-
     public void update() {
-        if (keyh.shoot && !keyh.held) {
+        if (keyh.isShoot() && !keyh.isHeld()) {
             projectiles.add(new Projectile(gp, player.getx() + gp.getTilesize() / 3,
                     player.gety() - gp.getTilesize() / 3));
-            keyh.shoot = false;
+            keyh.setShoot(false);
         }
 
         Iterator<Projectile> iterator = projectiles.iterator();

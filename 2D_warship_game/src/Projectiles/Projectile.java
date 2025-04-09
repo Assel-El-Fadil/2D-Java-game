@@ -1,7 +1,6 @@
 package Projectiles;
 
 import Main.GamePanel;
-import Main.KeyHandler;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

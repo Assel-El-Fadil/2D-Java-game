@@ -21,13 +21,6 @@ public class Player extends Entity {
         setdefault();
         getPlayerImage();
     }
-    public Player(GamePanel gp, KeyHandler keyh,int hp, int attack, int vitesse){
-        this.gp = gp;
-        this.keyh = keyh;
-        this.hp = hp;
-        this.attack = attack;
-        this.vitesse = vitesse;
-    }
 
     public int getx(){return this.x;}
     public int gety(){return this.y;}
@@ -48,22 +41,22 @@ public class Player extends Entity {
     }
 
     public void update(){
-        if(keyh.up){
+        if(keyh.isUp()){
             if(this.y > 0){
-                y -= vitesse;;
+                y -= vitesse;
             }
         }
-        if(keyh.down){
+        if(keyh.isDown()){
             if(this.y < gp.getScreenHeight() - gp.getTilesize()) {
                 y += vitesse;
             }
         }
-        if(keyh.left){
+        if(keyh.isLeft()){
             if(this.x > 0) {
                 x -= vitesse;
             }
         }
-        if(keyh.right){
+        if(keyh.isRight()){
             if(this.x < gp.getScreenWidth() - gp.getTilesize()) {
                 x += vitesse;
             }

@@ -4,7 +4,51 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener{
-    public boolean up, down, left, right, shoot, held;
+
+    private GamePanel gp;
+    private boolean up, down, left, right;
+    private boolean shoot, held;
+
+    public KeyHandler(GamePanel gp){
+        this.gp = gp;
+    }
+
+    public boolean isUp() {
+        return up;
+    }
+    public void setUp(boolean up) {
+        this.up = up;
+    }
+    public boolean isDown() {
+        return down;
+    }
+    public void setDown(boolean down) {
+        this.down = down;
+    }
+    public boolean isLeft() {
+        return left;
+    }
+    public void setLeft(boolean left) {
+        this.left = left;
+    }
+    public boolean isRight() {
+        return right;
+    }
+    public void setRight(boolean right) {
+        this.right = right;
+    }
+    public boolean isShoot() {
+        return shoot;
+    }
+    public void setShoot(boolean shoot) {
+        this.shoot = shoot;
+    }
+    public boolean isHeld() {
+        return held;
+    }
+    public void setHeld(boolean held) {
+        this.held = held;
+    }
 
     @Override
     public void keyTyped(KeyEvent e) {
@@ -13,19 +57,13 @@ public class KeyHandler implements KeyListener{
     @Override
     public void keyPressed(KeyEvent e) {
         int code = e.getKeyCode();
-        if(code == 38){
-            up = true;
-        }
-        if(code == 40){
-            down = true;
-        }
-        if(code == 39){
-            right = true;
-        }
-        if(code == 37){
-            left = true;
-        }
-        if(code == 32){
+
+        // Movement keys
+        if(code == KeyEvent.VK_UP) up = true;
+        if(code == KeyEvent.VK_DOWN) down = true;
+        if(code == KeyEvent.VK_RIGHT) right = true;
+        if(code == KeyEvent.VK_LEFT) left = true;
+        if(code == KeyEvent.VK_SPACE) {
             shoot = true;
             held = true;
         }
@@ -34,19 +72,19 @@ public class KeyHandler implements KeyListener{
     @Override
     public void keyReleased(KeyEvent e) {
         int code = e.getKeyCode();
-        if(code == 38){
+        if(code == KeyEvent.VK_UP){
             up = false;
         }
-        if(code == 40){
+        if(code == KeyEvent.VK_DOWN){
             down = false;
         }
-        if(code == 39){
+        if(code == KeyEvent.VK_RIGHT){
             right = false;
         }
-        if(code == 37){
+        if(code == KeyEvent.VK_LEFT){
             left = false;
         }
-        if(code == 32){
+        if(code == KeyEvent.VK_SPACE){
             held = false;
         }
     }

@@ -8,8 +8,7 @@ public abstract class Entity{
     protected int attack;
     protected int vitesse;
 
-    public BufferedImage ship;
-    //public String direction;
+    protected BufferedImage ship;
 
     public int getHp(){return hp;}
     public int getAttack(){return attack;}

@@ -5,7 +5,6 @@ import Main.GamePanel;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 
 public class Background{
@@ -27,15 +26,8 @@ public class Background{
     public void setBackground(BufferedImage background) {
         this.background = background;
     }
-    public GamePanel getGp() {
-        return gp;
-    }
-    public void setGp(GamePanel gp) {
-        this.gp = gp;
-    }
 
     public void draw(Graphics2D g2){
         g2.drawImage(background, 0, 0, gp.getScreenWidth(), gp.getScreenHeight(), null);
     }
-
 }

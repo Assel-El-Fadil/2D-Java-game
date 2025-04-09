@@ -2,29 +2,25 @@ package Main;
 
 import Background.Background;
 import Entity.Player;
-import Projectiles.Projectile;
 import Projectiles.ProjectileManager;
 
 import javax.swing.JPanel;
 import java.awt.*;
-import java.awt.Color;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class GamePanel extends JPanel implements Runnable{
 
-    final int originalTilesize = 16;
-    final int scale = 3;
-
-    final int tilesize = originalTilesize * scale;
-    final int maxScreenCol = 28;
-    final int maxScreenRow = 15;
-    final int screenWidth = tilesize * maxScreenCol;
-    final int screenHeight = tilesize * maxScreenRow;
+    private final int tilesize = 48;
+    private final int maxScreenCol = 28;
+    private final int maxScreenRow = 15;
+    private final int screenWidth = tilesize * maxScreenCol;
+    private final int screenHeight = tilesize * maxScreenRow;
 
     int FPS = 60;
 
     Background bg = new Background(this);
-    KeyHandler keyh = new KeyHandler();
+    KeyHandler keyh = new KeyHandler(this);
     Thread gameThread;
     Player player = new Player(this, this.keyh);
     ProjectileManager projectiles = new ProjectileManager(this, keyh, player);
@@ -41,9 +37,7 @@ public class GamePanel extends JPanel implements Runnable{
     public int getTilesize(){return this.tilesize;}
 
     public GamePanel(){
-
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
-        this.setBackground(Color.BLACK);
         this.setDoubleBuffered(true);
         this.addKeyListener(keyh);
         this.setFocusable(true);
@@ -74,19 +68,15 @@ public class GamePanel extends JPanel implements Runnable{
         double delta = 0;
         long lastTime = System.nanoTime();
         long currenttime;
-        //long timer=0;
-        //long updatecount=0;
 
         while(gameThread!=null){
             currenttime = System.nanoTime();
             delta += (currenttime - lastTime) / updateinterval;
-            //timer += (currenttime - lastTime);
             lastTime = currenttime;
             if(delta >= 1){
                 update();
                 repaint();
                 delta--;
-                //updatecount++;
             }
         }
     }

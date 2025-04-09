@@ -9,9 +9,6 @@ public class Enemies extends Entity {
         this.attack = attack;
         this.vitesse = vitesse;
     }
-    public Enemies(Enemies enemy){
-        this(enemy.hp, enemy.attack, enemy.vitesse);
-    }
 
     //methods
     //TODO: shooting function
